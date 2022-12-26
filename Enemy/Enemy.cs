@@ -13,7 +13,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject _doubleLaserPrefab;
     private float _canFire = -1f;
     private float _fireRate = 3.0f;
-    
+    private Laser _laser;
+
 //    private float _randomX = Random.Range(-10f, 10f);
     private void Start()
     {

@@ -76,5 +76,4 @@ public class Laser : MonoBehaviour
     {
         _isEnemyLaser = true;
     }
-    
 }

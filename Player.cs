@@ -183,7 +183,4 @@ public class Player : MonoBehaviour
         _score += 10;
         _uiManager.UpdateScore(_score);
     }
-
-
-    
 }
