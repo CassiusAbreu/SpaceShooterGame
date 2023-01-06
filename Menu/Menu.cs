@@ -8,4 +8,9 @@ public class Menu : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+
+    public void LoadCooperativeMode()
+    {
+        SceneManager.LoadScene(2);
+    }
 }

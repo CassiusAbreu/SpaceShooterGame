@@ -23,6 +23,8 @@ public class Player : MonoBehaviour
     [SerializeField] AudioClip _powerupAudioClip;
     private SpriteRenderer _playerSprite;
     [SerializeField] private GameObject _explosionPrefab;
+    [SerializeField] private bool _playerOne;
+    [SerializeField] private bool _playerTwo;
 
     void Start()
     {
@@ -83,23 +85,52 @@ public class Player : MonoBehaviour
 
     private void PlayerMovement()
     {
-        //Get the Horizontal and Vertical axes input and store it in 2 variables
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-
-        //Making a V3 variable that hold the coords of the input.
-        Vector3 coords = new Vector3(horizontal, vertical, 0);
-
-        //Translating that variable to movement
-        transform.Translate(coords * (_speed * Time.deltaTime));
+        if (_playerOne)
+        {
+           //Get the Horizontal and Vertical axes input and store it in 2 variables
+            float horizontal = Input.GetAxis("Horizontal");
+            float vertical = Input.GetAxis("Vertical");
+           
+            //Making a V3 variable that hold the coords of the input.
+            Vector3 coords = new Vector3(horizontal, vertical, 0);
+           
+            //Translating that variable to movement
+            transform.Translate(coords * (_speed * Time.deltaTime)); 
+        }
+        else if (_playerTwo)
+        {
+            //Get the Horizontal and Vertical axes input and store it in 2 variables
+            float horizontal = Input.GetAxis("HorizontalArrows");
+            float vertical = Input.GetAxis("VerticalArrows");
+           
+            //Making a V3 variable that hold the coords of the input.
+            Vector3 coords = new Vector3(horizontal, vertical, 0);
+           
+            //Translating that variable to movement
+            transform.Translate(coords * (_speed * Time.deltaTime));
+        }
     }
 
     private void FireLaser()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && Time.time > _canFire)
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time > _canFire && _playerOne)
         {
             _canFire = Time.deltaTime + _fireRate;
-
+          
+            if (tripleShotActive)
+            {
+                Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(_laserPrefab, transform.position + new Vector3(0, 1.3f, 0), Quaternion.identity);
+            }
+        }
+          
+        if (Input.GetKeyDown(KeyCode.R) && Time.time > _canFire && _playerTwo)
+        {
+            _canFire = Time.deltaTime + _fireRate;
+          
             if (tripleShotActive)
             {
                 Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);

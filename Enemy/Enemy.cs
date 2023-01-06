@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     private float _canFire = -1f;
     private float _fireRate = 3.0f;
     private Laser _laser;
+    [SerializeField] private GameObject thrusters;
 
 //    private float _randomX = Random.Range(-10f, 10f);
     private void Start()
@@ -91,8 +92,10 @@ public class Enemy : MonoBehaviour
             _player.PlayerDmg();
             _enemyCollider.enabled = false;
             _animator.SetTrigger(Animator.StringToHash("OnEnemyDeath"));
+            _animator.speed = 2f;
             _speed = 0;
-            Destroy(this.gameObject,2.8f);
+            Destroy(thrusters);
+            Destroy(this.gameObject,1.4f);
         }
 
 
@@ -103,8 +106,10 @@ public class Enemy : MonoBehaviour
             Destroy(other.gameObject);
             _enemyCollider.enabled = false;
             _animator.SetTrigger(Animator.StringToHash("OnEnemyDeath"));
+            _animator.speed = 2f;
             _speed = 0;
-            Destroy(this.gameObject,2.8f);
+            Destroy(thrusters);
+            Destroy(this.gameObject,1.4f);
         }
     }
 }

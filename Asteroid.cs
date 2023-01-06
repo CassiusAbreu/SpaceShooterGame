@@ -7,6 +7,7 @@ public class Asteroid : MonoBehaviour
     private Asteroid _asteroid;
     private SpawnManager _spawnManager;
     private CircleCollider2D _asteroidCollider;
+
     void Start()
     {
         _asteroidCollider = GetComponent<CircleCollider2D>();
